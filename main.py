@@ -42,31 +42,31 @@ def mensaje():
 #Esta consulta devuelve una tabla que indica la cantidad de items y porcentaje de contenido Free por año según la empresa desarrolladora.
 #http://127.0.0.1:8000/developer/?desarrollador=Poppermost%20Productions
 
-#@app.get('/developer/')
-#def get_developer_stats(desarrollador: str):
+@app.get('/developer/')
+def get_developer_stats(desarrollador: str):
 
-#    df = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
-
-
-#    df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
+    df = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
 
 
-#    developer_df = df[df['developer'] == desarrollador]
+    df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
 
 
-#    items_por_año = developer_df.groupby(df['release_date'].dt.year).size().reset_index(name='Cantidad de Items')
+    developer_df = df[df['developer'] == desarrollador]
 
 
-#    free_por_año = developer_df[developer_df['price'] == 'Free'].groupby(df['release_date'].dt.year).size().reset_index(name='Contenido Free')
+    items_por_año = developer_df.groupby(df['release_date'].dt.year).size().reset_index(name='Cantidad de Items')
 
 
-#    result_df = items_por_año.merge(free_por_año, on='release_date', how='left')
-#    result_df['Contenido Free'] = (result_df['Contenido Free'] / result_df['Cantidad de Items'] * 100).fillna(0).astype(int).astype(str) + '%'
+    free_por_año = developer_df[developer_df['price'] == 'Free'].groupby(df['release_date'].dt.year).size().reset_index(name='Contenido Free')
 
 
-#    result_df.rename(columns={'release_date': 'Año'}, inplace=True)
+    result_df = items_por_año.merge(free_por_año, on='release_date', how='left')
+    result_df['Contenido Free'] = (result_df['Contenido Free'] / result_df['Cantidad de Items'] * 100).fillna(0).astype(int).astype(str) + '%'
 
-#    return result_df.to_dict(orient='records')
+
+    result_df.rename(columns={'release_date': 'Año'}, inplace=True)
+
+    return result_df.to_dict(orient='records')
 
 #Consulta 02:______________________________________________________________________________________________________________
 
@@ -83,7 +83,7 @@ def mensaje():
 #    items_copy = df_items.copy()
 #    reviews_copy = df_reviews.copy()
 
-#    # Convertir la columna 'user_id' a str
+    # Convertir la columna 'user_id' a str
 #    items_copy['user_id'] = items_copy['user_id'].astype(str)
 #    reviews_copy['user_id'] = reviews_copy['user_id'].astype(str)
 
@@ -105,7 +105,7 @@ def mensaje():
 #    else:
 #        recommendation_percentage = 0
 
-#    # Convertir valores de numpy.int64 a tipos de datos estándar
+    # Convertir valores de numpy.int64 a tipos de datos estándar
 #    money_spent = float(money_spent) if not pd.isnull(money_spent) else 0.0  # Convertir a float, manejar NaN si es necesario
 #    recommendation_percentage = float(recommendation_percentage) if not pd.isnull(recommendation_percentage) else 0.0  # Convertir a float, manejar NaN si es necesario
 
