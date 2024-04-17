@@ -55,10 +55,10 @@ A machine learning model was crafted to emphasize game-to-game (item-to-item) si
 TBD
 
 **Data Resources**
-Notebooks: The folders ETL, EDA, Feature Engineering, and ML tell the story of how this product was made if you wish to follow the process step-by-step. 
-Data: The data utilized in this project can be found in the folder datos_STEAM.
-Link to API
-Link to public video 
+1. Notebooks: The folders ETL, EDA, Feature Engineering, and ML tell the story of how this product was made if you wish to follow the process step-by-step. 
+2. Data: The data utilized in this project can be found in the folder datos_STEAM.
+3. Link to API
+4. Link to public video 
 _____________________________________________________________________________________________________________________________________________________________________________________________
 ## **Conclusion**
 In summary, the Steam Video Game Recommendation System project exemplifies our dedication to utilizing data-driven insights and machine learning methodologies to enrich user interactions on the Steam platform. It also taught valuable lessons about the importance of data engineering- much of the time-consuming but necessary data transformations could be avoided with properly structured and automated data input processes.  Even still, through dedicated data preprocessing, meticulous exploration, and user-friendly API construction, we've established a strong foundation for an effective recommendation engine. Continual model refinement and assessment will enable us to provide tailored and meaningful game suggestions to Steam users, ultimately enhancing engagement and satisfaction levels.
