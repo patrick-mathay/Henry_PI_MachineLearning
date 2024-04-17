@@ -17,12 +17,25 @@ import numpy as np
 
 app = FastAPI()
 
+#___________________________________________________________________________________________________________________________
 
+#___________________________________________________Proyecto_1______________________________________________________________
 
 
 @app.get('/')
 def mensaje():
     return "Bienved@!\ Esta es una API para realizar consultas sobre juegos de STEAM."
+
+#__________________________________________________________________________________________________________________________
+# Dataframes
+df = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+df_items = pd.read_parquet('./datos_STEAM/parquet/items_clean.parquet')
+df_reviews = pd.read_parquet('./datos_STEAM/parquet/reviews_clean_sentiment.parquet')
+df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+df_items = pd.read_parquet('./datos_STEAM/parquet/items_clean.parquet')
+games = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+sentiment = pd.read_parquet('./datos_STEAM/parquet/reviews_clean_sentiment.parquet')
 
 #Consulta 01:______________________________________________________________________________________________________________
 
@@ -235,7 +248,7 @@ df_merged['release_date'] = scaler.fit_transform(df_merged[['release_date']])
 df_final = df_merged[['id'] + features]
 df_final= df_final.merge(df_games[['id', 'app_name']], on='id', how='left')
 
-df_sampled = df_final.sample(frac=0.5, random_state=42)
+df_sampled = df_final.sample(frac=0.2, random_state=42)
 similarity_matrix = cosine_similarity(df_sampled[features].fillna(0))
 similarity_matrix = np.nan_to_num(similarity_matrix)
 
