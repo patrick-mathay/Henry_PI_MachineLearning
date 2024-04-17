@@ -25,7 +25,7 @@ In my role as a Data Scientist at Steam, my main objective is to create a user-f
 **Objectives:**
 
 Create a data-powered video game recommendation system for Steam, incorporating an intuitive API with FastAPI to deliver personalized suggestions.
-Perform thorough Exploratory Data Analysis (EDA) and train a machine learning model, emphasizing the utilization of advanced game similarity algorithms to offer tailored recommendations.\
+Perform thorough Exploratory Data Analysis (EDA) and train a machine learning model, emphasizing the utilization of advanced game similarity algorithms to offer tailored recommendations.
 _____________________________________________________________________________________________________________________________________________________________________________________________
 ## **Project Workflow**
 **Data Preparation**\
