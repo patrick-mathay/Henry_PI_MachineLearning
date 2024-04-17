@@ -236,52 +236,52 @@ def mensaje():
 
 #Modelo de Recomendación_____________________________________________________________________________________________________________
 #774276
-df_genres = pd.read_parquet('./datos_STEAM/parquet/df_dummies.parquet')
-df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean3.parquet')
+#df_genres = pd.read_parquet('./datos_STEAM/parquet/df_dummies.parquet')
+#df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean3.parquet')
 
-df_games['id'] = df_games['id'].astype(str)
+#df_games['id'] = df_games['id'].astype(str)
 
-df_merged = df_games.merge(df_genres, on='id', how='left')
-features = ['release_date'] + list(df_genres.columns[1:])
-scaler = StandardScaler()
-df_merged['release_date'] = scaler.fit_transform(df_merged[['release_date']])
-df_final = df_merged[['id'] + features]
-df_final= df_final.merge(df_games[['id', 'app_name']], on='id', how='left')
+#df_merged = df_games.merge(df_genres, on='id', how='left')
+#features = ['release_date'] + list(df_genres.columns[1:])
+#scaler = StandardScaler()
+#df_merged['release_date'] = scaler.fit_transform(df_merged[['release_date']])
+#df_final = df_merged[['id'] + features]
+#df_final= df_final.merge(df_games[['id', 'app_name']], on='id', how='left')
 
-df_sampled = df_final.sample(frac=0.2, random_state=42)
-similarity_matrix = cosine_similarity(df_sampled[features].fillna(0))
-similarity_matrix = np.nan_to_num(similarity_matrix)
+#df_sampled = df_final.sample(frac=0.2, random_state=42)
+#similarity_matrix = cosine_similarity(df_sampled[features].fillna(0))
+#similarity_matrix = np.nan_to_num(similarity_matrix)
 
 #Definir la variable global top_n
-top_n = 5
+#top_n = 5
 
-@app.get("/recomendacion-juegos/")
-def recomendar_juegos(game_id: str):
-    ids_juegos_muestreados = df_sampled['id'].unique()
+#@app.get("/recomendacion-juegos/")
+#def recomendar_juegos(game_id: str):
+#    ids_juegos_muestreados = df_sampled['id'].unique()
 
 #Verificar si el ID del juego está en los juegos muestreados
-    if game_id not in ids_juegos_muestreados:
-        return f"No se encontraron recomendaciones: {game_id} no está en los datos muestreados."
+#    if game_id not in ids_juegos_muestreados:
+#        return f"No se encontraron recomendaciones: {game_id} no está en los datos muestreados."
 
 #Obtener el índice del juego en los datos muestreados
-    indice_juego = df_sampled.index[df_sampled['id'] == game_id].tolist()
+#    indice_juego = df_sampled.index[df_sampled['id'] == game_id].tolist()
 #Verificar si se encontró el juego en los datos muestreados
-    if not indice_juego:
-        return f"No se encontraron recomendaciones: {game_id} no está en los datos muestreados."
+#    if not indice_juego:
+#        return f"No se encontraron recomendaciones: {game_id} no está en los datos muestreados."
 
-    indice_juego = indice_juego[0]
+#    indice_juego = indice_juego[0]
 
     # Calcular los puntajes de similitud entre juegos
-    puntajes_similitud = list(enumerate(similarity_matrix[indice_juego]))
-    puntajes_similitud = sorted(puntajes_similitud, key=lambda x: x[1], reverse=True)
+#   puntajes_similitud = list(enumerate(similarity_matrix[indice_juego]))
+#    puntajes_similitud = sorted(puntajes_similitud, key=lambda x: x[1], reverse=True)
 
     # Obtener los índices de los juegos similares
-    indices_juegos_similares = [i for i, puntaje in puntajes_similitud[1:top_n+1]]
+#    indices_juegos_similares = [i for i, puntaje in puntajes_similitud[1:top_n+1]]
 
 #Obtener los nombres de los juegos similares
-    nombres_juegos_similares = df_sampled['app_name'].iloc[indices_juegos_similares].tolist()
+#    nombres_juegos_similares = df_sampled['app_name'].iloc[indices_juegos_similares].tolist()
 
     # Mensaje de recomendación
-    mensaje_recomendacion = f"Juegos recomendados basados en el ID del juego {game_id} - {df_sampled['app_name'].iloc[indice_juego]}:"
+#    mensaje_recomendacion = f"Juegos recomendados basados en el ID del juego {game_id} - {df_sampled['app_name'].iloc[indice_juego]}:"
 
-    return [mensaje_recomendacion] + nombres_juegos_similares
+#    return [mensaje_recomendacion] + nombres_juegos_similares
