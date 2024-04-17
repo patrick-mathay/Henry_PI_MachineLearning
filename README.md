@@ -36,21 +36,24 @@ I thoroughly explored each dataset through extensive EDA, with a focus on a pers
 
 **API Functionality**
 Utilizing the FastAPI framework, we developed an API with specific endpoints:
-*DeveloperItemCountAndFreeContentByYear(developer: str):* Returns the number of items and the percentage of free content per year for a given developer.
-*UserSpendingAndRecommendationPercentage(User_id: str):* Returns the amount of money spent by the user, the percentage of recommendation based on reviews.recommend, and the total number of items.
-*TopUserForGenreAndYearlyPlaytime(genre: str):* Returns the user with the highest accumulated playtime for the given genre and a list of accumulated playtime per year of release.
-*TopRecommendedDevelopersForYear(year: int):* Returns the top 3 developers with the most user-recommended games for the given year (reviews.recommend = True and positive comments).
-*DeveloperReviewsSentimentAnalysis(developer: str):* Returns a dictionary with the developer's name as the key and a list containing the total number of user reviews categorized with sentiment analysis as either positive or negative.
+  1. *DeveloperItemCountAndFreeContentByYear(developer: str):* Returns the number of items and the percentage of free content per year for a given developer.
+  2. *UserSpendingAndRecommendationPercentage(User_id: str):* Returns the amount of money spent by the user, the percentage of recommendation based on reviews.recommend, and the total number of items.
+  3. *TopUserForGenreAndYearlyPlaytime(genre: str):* Returns the user with the highest accumulated playtime for the given genre and a list of accumulated playtime per year of release.
+  4. *TopRecommendedDevelopersForYear(year: int):* Returns the top 3 developers with the most user-recommended games for the given year (reviews.recommend = True and positive comments).
+  5. *DeveloperReviewsSentimentAnalysis(developer: str):* Returns a dictionary with the developer's name as the key and a list containing the total number of user reviews categorized with sentiment analysis as either positive or negative.
 
 **Machine Learning Endpoint:**
 *recommend_game(game_id, top_n=5):* Takes a product ID as input and returns a list of 5 recommended games similar to the input game.
 _____________________________________________________________________________________________________________________________________________________________________________________________
 ## **System Deployment**
 We deployed the API on Render due to its user-friendly interface and web accessibility.
+
 **ML Model Training**
 A machine learning model was crafted to emphasize game-to-game (item-to-item) similarity for recommendation generation. This model seamlessly integrates with the API, empowering users to receive personalized game suggestions.
+
 **Evaluation Criteria**
 TBD
+
 **Data Resources**
 Notebooks: The folders ETL, EDA, Feature Engineering, and ML tell the story of how this product was made if you wish to follow the process step-by-step. 
 Data: The data utilized in this project can be found in the folder datos_STEAM.
