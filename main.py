@@ -32,7 +32,7 @@ def mensaje():
 @app.get('/developer/')
 def get_developer_stats(desarrollador: str):
 
-    df = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\games_clean.parquet')
+    df = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
 
 
     df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
@@ -62,9 +62,9 @@ def get_developer_stats(desarrollador: str):
 #http://127.0.0.1:8000/userdata/?User_id=76561198070234207
 @app.get("/userdata/")
 def get_user_data(User_id: str):
-    df_games = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\games_clean.parquet')
-    df_items = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\items_clean.parquet')
-    df_reviews = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\reviews_clean_sentiment.parquet')
+    df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+    df_items = pd.read_parquet('./datos_STEAM/parquet/items_clean.parquet')
+    df_reviews = pd.read_parquet('./datos_STEAM/parquet/reviews_clean_sentiment.parquet')
 
     games_copy = df_games.copy()
     items_copy = df_items.copy()
@@ -112,8 +112,8 @@ def get_user_data(User_id: str):
 #http://127.0.0.1:8000/user-for-genre/?genero=Action
 @app.get("/user-for-genre/")
 def user_for_genre(genero: str):
-    df_games = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\games_clean.parquet')
-    df_items = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\items_clean.parquet')
+    df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+    df_items = pd.read_parquet('./datos_STEAM/parquet/items_clean.parquet')
 
     df_games_copy = df_games.copy()
     df_items_copy = df_items.copy()
@@ -145,8 +145,8 @@ def user_for_genre(genero: str):
 #http://127.0.0.1:8000/developer-reviews-analysis/?desarrollador=Kotoshiro
 @app.get("/developer-reviews-analysis/")
 def developer_reviews_analysis(desarrollador: str):
-    games = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\games_clean.parquet')
-    sentiment = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\reviews_clean_sentiment.parquet')
+    games = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+    sentiment = pd.read_parquet('./datos_STEAM/parquet/reviews_clean_sentiment.parquet')
 
     games_copy = games.copy()
     sentiment_copy = sentiment.copy()
@@ -176,9 +176,9 @@ def developer_reviews_analysis(desarrollador: str):
 @app.get('/users_best_developer')
 def UsersBestDeveloper(año: int):
 
-    df_games = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\games_clean.parquet')
-    df_reviews = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\reviews_clean.parquet')
-    df_sentimientos = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\reviews_clean_sentiment.parquet')
+    df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean.parquet')
+    df_reviews = pd.read_parquet('./datos_STEAM/parquet/reviews_clean.parquet')
+    df_sentimientos = pd.read_parquet('./datos_STEAM/parquet/reviews_clean_sentiment.parquet')
 
     df_games_copy = df_games.copy()
     df_reviews_copy = df_reviews.copy()
@@ -223,8 +223,8 @@ def UsersBestDeveloper(año: int):
 
 #Modelo de Recomendación_____________________________________________________________________________________________________________
 #774276
-df_genres = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\df_dummies.parquet')
-df_games = pd.read_parquet(r'C:\Users\Owner\Desktop\LABS\Proyecto_STEAM\datos_STEAM\parquet\games_clean3.parquet')
+df_genres = pd.read_parquet('./datos_STEAM/parquet/df_dummies.parquet')
+df_games = pd.read_parquet('./datos_STEAM/parquet/games_clean3.parquet')
 
 df_games['id'] = df_games['id'].astype(str)
 
